@@ -163,6 +163,14 @@ class FFAppState extends ChangeNotifier {
     debugLogAppState(this);
   }
 
+  String _uploadedImagePath = '';
+  String get uploadedImagePath => _uploadedImagePath;
+  set uploadedImagePath(String value) {
+    _uploadedImagePath = value;
+
+    debugLogAppState(this);
+  }
+
   Map<String, DebugDataField> toDebugSerializableMap() => {
         'sensorDataFetch': debugSerializeParam(
           sensorDataFetch,

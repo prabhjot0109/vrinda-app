@@ -144,97 +144,205 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                     final bool isUser = getJsonField(chatItem, r'''$.isuser''') == true;
                     final String message = getJsonField(chatItem, r'''$.message''').toString();
                     
+                    // Extract image URL from message if available
+                    String? imageUrl;
+                    bool hasImage = false;
+                    String messageText = message;
+                    
+                    // Check if message contains pest detection image request
+                    if (isUser && message.contains('Detect Pest')) {
+                      hasImage = true;
+                      imageUrl = FFAppState().uploadedImagePath;
+                      print("Found pest detection image: $imageUrl");
+                    }
+
                     return Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Column(
+                        crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                         children: [
-                          if (!isUser)
-                            // AI Avatar
+                          // Display uploaded image if available
+                          if (hasImage)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8.0, 0),
-                              child: Container(
-                                width: 36,
-                                height: 36,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
-                                  ),
-                                ),
-                                child: Image.asset(
-                                  'assets/images/new_(1).png',  // Use existing image from assets
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) => 
-                                    Image.asset('assets/images/error_image.png', fit: BoxFit.cover),
-                                ),
-                              ),
-                            ),
-                          Expanded(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: isUser 
-                                  ? CrossAxisAlignment.end 
-                                  : CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  constraints: BoxConstraints(
-                                    maxWidth: MediaQuery.of(context).size.width * 0.75,
-                                  ),
+                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8.0),
+                              child: GestureDetector(
+                                onTap: () async {
+                                  // Show full-size image in dialog
+                                  await showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Dialog(
+                                        insetPadding: EdgeInsets.all(10),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Image.network(
+                                              imageUrl!,
+                                              fit: BoxFit.contain,
+                                              errorBuilder: (context, error, stackTrace) => 
+                                                Image.asset('assets/images/error_image.png'),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.all(8.0),
+                                              child: Text('Pest Detection Image', 
+                                                style: FlutterFlowTheme.of(context).bodyMedium),
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: 300,
+                                  height: 300,
                                   decoration: BoxDecoration(
-                                    color: isUser
-                                        ? FlutterFlowTheme.of(context).secondaryBackground
-                                        : FlutterFlowTheme.of(context).primaryBackground, // Changed to primaryBackground for AI responses
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context).alternate,
                                       width: 1.0,
                                     ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 3.0,
-                                        color: Color(0x33000000),
-                                        offset: Offset(0.0, 1.0),
-                                      ),
-                                    ],
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-                                    child: isUser
-                                        ? Text(
-                                            message,
-                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                              fontSize: 14.0,
-                                              color: FlutterFlowTheme.of(context).primaryText,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                                  FlutterFlowTheme.of(context).bodyMediumFamily),
-                                            ),
-                                          )
-                                        : Builder(
-                                            builder: (context) {
-                                              // Check if this is a newly added message to trigger animation
-                                              final isNewMessage = chatIndex == chat.length - 1 && 
-                                                  !isUser && 
-                                                  FFAppState().lastProcessedMessageCount != chat.length;
-                                              
-                                              // Update the last processed message count if needed
-                                              if (isNewMessage && chatIndex == chat.length - 1) {
-                                                Future.delayed(Duration(milliseconds: 100), () {
-                                                  FFAppState().lastProcessedMessageCount = chat.length;
-                                                });
-                                              }
-                                              
-                                              return isNewMessage
-                                                ? AnimatedTextKit(
-                                                    animatedTexts: [
-                                                      TyperAnimatedText(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.network(
+                                      imageUrl!,
+                                      width: 300,
+                                      height: 300,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, error, stackTrace) {
+                                        print("Error loading image: $error");
+                                        return Image.asset(
+                                          'assets/images/error_image.png', 
+                                          fit: BoxFit.cover,
+                                          width: 300,
+                                          height: 300,
+                                        );
+                                      },
+                                      loadingBuilder: (context, child, loadingProgress) {
+                                        if (loadingProgress == null) return child;
+                                        return Center(
+                                          child: CircularProgressIndicator(
+                                            value: loadingProgress.expectedTotalBytes != null
+                                                ? loadingProgress.cumulativeBytesLoaded / 
+                                                  loadingProgress.expectedTotalBytes!
+                                                : null,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (!isUser)
+                                // AI Avatar
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8.0, 0),
+                                  child: Container(
+                                    width: 36,
+                                    height: 36,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context).alternate,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/new_(1).png',  // Use existing image from assets
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, error, stackTrace) => 
+                                        Image.asset('assets/images/error_image.png', fit: BoxFit.cover),
+                                    ),
+                                  ),
+                                ),
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: isUser 
+                                      ? CrossAxisAlignment.end 
+                                      : CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      constraints: BoxConstraints(
+                                        maxWidth: MediaQuery.of(context).size.width * 0.75,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: isUser
+                                            ? FlutterFlowTheme.of(context).secondaryBackground
+                                            : FlutterFlowTheme.of(context).primaryBackground, // Changed to primaryBackground for AI responses
+                                        borderRadius: BorderRadius.circular(12.0),
+                                        border: isUser ? Border.all(
+                                          color: FlutterFlowTheme.of(context).alternate,
+                                          width: 1.0,
+                                        ) : null, // Removed border for AI responses
+                                        boxShadow: isUser ? [
+                                          BoxShadow(
+                                            blurRadius: 3.0,
+                                            color: Color(0x33000000),
+                                            offset: Offset(0.0, 1.0),
+                                          ),
+                                        ] : null,
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                                        child: isUser
+                                            ? Text(
+                                                message,
+                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                  fontSize: 14.0,
+                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                                      FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                ),
+                                              )
+                                            : Builder(
+                                                builder: (context) {
+                                                  // Check if this is a newly added message to trigger animation
+                                                  final isNewMessage = chatIndex == chat.length - 1 && 
+                                                      !isUser && 
+                                                      FFAppState().lastProcessedMessageCount != chat.length;
+                                                  
+                                                  // Update the last processed message count if needed
+                                                  if (isNewMessage && chatIndex == chat.length - 1) {
+                                                    Future.delayed(Duration(milliseconds: 100), () {
+                                                      FFAppState().lastProcessedMessageCount = chat.length;
+                                                    });
+                                                  }
+                                                  
+                                                  return isNewMessage
+                                                    ? AnimatedTextKit(
+                                                        animatedTexts: [
+                                                          TyperAnimatedText(
+                                                            message,
+                                                            textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                              fontSize: 14.0,
+                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                              letterSpacing: 0.0,
+                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                                                  FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                            ),
+                                                            speed: Duration(milliseconds: 20),
+                                                            curve: Curves.easeOutQuad,
+                                                          ),
+                                                        ],
+                                                        isRepeatingAnimation: false,
+                                                        totalRepeatCount: 1,
+                                                        displayFullTextOnTap: true,
+                                                        stopPauseOnTap: true,
+                                                      )
+                                                    : Text(
                                                         message,
-                                                        textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                           fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                           fontSize: 14.0,
                                                           color: FlutterFlowTheme.of(context).primaryText,
@@ -242,60 +350,43 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                                                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                                                               FlutterFlowTheme.of(context).bodyMediumFamily),
                                                         ),
-                                                        speed: Duration(milliseconds: 20),
-                                                        curve: Curves.easeOutQuad,
-                                                      ),
-                                                    ],
-                                                    isRepeatingAnimation: false,
-                                                    totalRepeatCount: 1,
-                                                    displayFullTextOnTap: true,
-                                                    stopPauseOnTap: true,
-                                                  )
-                                                : Text(
-                                                    message,
-                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                      fontSize: 14.0,
-                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                                          FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                    ),
-                                                  );
-                                            },
-                                          ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          if (isUser)
-                            // User Avatar
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(8.0, 0, 0, 0),
-                              child: AuthUserStreamWidget(
-                                builder: (context) => Container(
-                                  width: 36,
-                                  height: 36,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context).alternate,
-                                      width: 1.0,
+                                                      );
+                                                },
+                                              ),
+                                      ),
                                     ),
-                                  ),
-                                  child: CachedNetworkImage(
-                                    imageUrl: currentUserPhoto.isEmpty
-                                        ? 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/vrinda-kriyeta4-tllf8o/assets/e1ui32jgr1xq/avatar.png'
-                                        : currentUserPhoto,
-                                    fit: BoxFit.cover,
-                                    errorWidget: (context, url, error) => 
-                                      Image.asset('assets/images/error_image.png', fit: BoxFit.cover),
-                                  ),
+                                  ],
                                 ),
                               ),
-                            ),
+                              if (isUser)
+                                // User Avatar
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0, 0, 0),
+                                  child: AuthUserStreamWidget(
+                                    builder: (context) => Container(
+                                      width: 36,
+                                      height: 36,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context).alternate,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      child: CachedNetworkImage(
+                                        imageUrl: currentUserPhoto.isEmpty
+                                            ? 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/vrinda-kriyeta4-tllf8o/assets/e1ui32jgr1xq/avatar.png'
+                                            : currentUserPhoto,
+                                        fit: BoxFit.cover,
+                                        errorWidget: (context, url, error) => 
+                                          Image.asset('assets/images/error_image.png', fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
                         ],
                       ),
                     );
@@ -643,64 +734,64 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                               useSafeArea: true,
                               context: context,
                               builder: (context) {
-                                return Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: Container(
-                                    height: 240.0,
-                                    child: AiBottomSheetWidget(),
-                                  ),
+                                return SizedBox(
+                                  height: 240.0,
+                                  child: AiBottomSheetWidget(),
                                 );
                               },
                             ).then((value) => safeSetState(() {}));
                           },
                         ),
                       ),
-                      AlignedTooltip(
-                        content: Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              'f205439b' /* Tap to give a voice input. */,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                        child: AlignedTooltip(
+                          content: Padding(
+                            padding: EdgeInsets.all(12.0),
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                'f205439b' /* Tap to give a voice input. */,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodySmallFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(FlutterFlowTheme.of(context)
+                                            .bodySmallFamily),
+                                  ),
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodySmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodySmallFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodySmallFamily),
-                                ),
                           ),
-                        ),
-                        offset: 4.0,
-                        preferredDirection: AxisDirection.up,
-                        borderRadius: BorderRadius.circular(12.0),
-                        backgroundColor: FlutterFlowTheme.of(context).alternate,
-                        elevation: 4.0,
-                        tailBaseWidth: 24.0,
-                        tailLength: 12.0,
-                        waitDuration: Duration(milliseconds: 100),
-                        showDuration: Duration(milliseconds: 1000),
-                        triggerMode: TooltipTriggerMode.longPress,
-                        child: ToggleIcon(
-                          onPressed: () async {
-                            safeSetState(() => FFAppState().voiceTrigger =
-                                !FFAppState().voiceTrigger);
-                          },
-                          value: FFAppState().voiceTrigger,
-                          onIcon: Icon(
-                            Icons.mic,
-                            color: FlutterFlowTheme.of(context).primary,
-                            size: 20.0,
-                          ),
-                          offIcon: Icon(
-                            Icons.mic_off,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 20.0,
+                          offset: 4.0,
+                          preferredDirection: AxisDirection.up,
+                          borderRadius: BorderRadius.circular(12.0),
+                          backgroundColor: FlutterFlowTheme.of(context).alternate,
+                          elevation: 4.0,
+                          tailBaseWidth: 24.0,
+                          tailLength: 12.0,
+                          waitDuration: Duration(milliseconds: 100),
+                          showDuration: Duration(milliseconds: 1000),
+                          triggerMode: TooltipTriggerMode.longPress,
+                          child: ToggleIcon(
+                            onPressed: () async {
+                              safeSetState(() => FFAppState().voiceTrigger =
+                                  !FFAppState().voiceTrigger);
+                            },
+                            value: FFAppState().voiceTrigger,
+                            onIcon: Icon(
+                              Icons.mic,
+                              color: FlutterFlowTheme.of(context).primary,
+                              size: 20.0,
+                            ),
+                            offIcon: Icon(
+                              Icons.mic_off,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 20.0,
+                            ),
                           ),
                         ),
                       ),
@@ -750,61 +841,64 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                                         FlutterFlowTheme.of(context).alternate,
                                   ),
                                 ),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'MOBILE_A_ICHAT_COMP_Icon_5qjrztdr_ON_TAP');
-                                    FFAppState().showContainer = false;
-                                    safeSetState(() {});
-                                    FFAppState().usermessage =
-                                        _model.textController.text;
-                                    safeSetState(() {});
-                                    FFAppState().isLoading = true;
-                                    safeSetState(() {});
-                                    FFAppState()
-                                        .addToChatlist(<String, dynamic>{
-                                      'message': FFAppState().usermessage,
-                                      'isuser': true,
-                                    });
-                                    safeSetState(() {});
-                                    safeSetState(() {
-                                      _model.textController?.clear();
-                                    });
-                                    _model.apiResulte8x = await PaulCall.call(
-                                      input: FFAppState().usermessage,
-                                    );
-
-                                    if ((_model.apiResulte8x?.succeeded ??
-                                        true)) {
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'MOBILE_A_ICHAT_COMP_Icon_5qjrztdr_ON_TAP');
+                                      FFAppState().showContainer = false;
+                                      safeSetState(() {});
+                                      FFAppState().usermessage =
+                                          _model.textController.text;
+                                      safeSetState(() {});
+                                      FFAppState().isLoading = true;
+                                      safeSetState(() {});
                                       FFAppState()
                                           .addToChatlist(<String, dynamic>{
-                                        'message': PaulCall.answer(
-                                          (_model.apiResulte8x?.jsonBody ?? ''),
-                                        ),
-                                        'isuser': false,
+                                        'message': FFAppState().usermessage,
+                                        'isuser': true,
                                       });
                                       safeSetState(() {});
-                                    }
-                                    FFAppState().isLoading = false;
-                                    safeSetState(() {});
-                                    await _model.listViewController?.animateTo(
-                                      _model.listViewController!.position
-                                          .maxScrollExtent,
-                                      duration: Duration(milliseconds: 100),
-                                      curve: Curves.ease,
-                                    );
+                                      safeSetState(() {
+                                        _model.textController?.clear();
+                                      });
+                                      _model.apiResulte8x = await PaulCall.call(
+                                        input: FFAppState().usermessage,
+                                      );
 
-                                    safeSetState(() {});
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_upward,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
+                                      if ((_model.apiResulte8x?.succeeded ??
+                                          true)) {
+                                        FFAppState()
+                                            .addToChatlist(<String, dynamic>{
+                                          'message': PaulCall.answer(
+                                            (_model.apiResulte8x?.jsonBody ?? ''),
+                                          ),
+                                          'isuser': false,
+                                        });
+                                        safeSetState(() {});
+                                      }
+                                      FFAppState().isLoading = false;
+                                      safeSetState(() {});
+                                      await _model.listViewController?.animateTo(
+                                        _model.listViewController!.position
+                                            .maxScrollExtent,
+                                        duration: Duration(milliseconds: 100),
+                                        curve: Curves.ease,
+                                      );
+
+                                      safeSetState(() {});
+                                    },
+                                    child: Icon(
+                                      Icons.arrow_upward,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24.0,
+                                    ),
                                   ),
                                 ),
                               );

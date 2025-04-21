@@ -554,8 +554,6 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
     );
   }
 
-
-
   // Function to process images with AI
   Future<void> processImageWithAI(FFUploadedFile file) async {
     if (file.bytes == null) {
@@ -563,6 +561,9 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
       return;
     }
 
+    // Store reference to the context for later use
+    final BuildContext currentContext = context;
+    
     try {
       safeSetState(() {
         _model.isProcessing = true;
@@ -583,9 +584,12 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
         ),
       );
 
-      // 2. Get the public URL
+      // Get the public URL
       final imageUrl = supabase.storage.from('images').getPublicUrl(fileName);
 
+      // Store image URL in AppState for use in chat
+      FFAppState().uploadedImagePath = imageUrl;
+      
       print("Image URL");
       print(imageUrl);
 
@@ -598,7 +602,7 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
       try {
         final response = await http.post(
           Uri.parse(
-              "https://swastikbansal0-734bb471-5844-4e55-b40d-2d9032985e7a.socketxp.com/predictImg"),
+              "https://swastikbansal0-94ce9f38-dc36-4cbd-abf3-0dc27d250190.socketxp.com/predictImg"),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode({
             'link': imageUrl,
@@ -613,13 +617,21 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
 
         // 4. Process the API response
         final responseData = jsonDecode(response.body);
-        prediction = responseData['prediction'];
+        // Handle prediction as list or string
+        if (responseData['prediction'] is List) {
+          prediction = (responseData['prediction'] as List).join(', ');
+        } else {
+          prediction = responseData['prediction'].toString();
+        }
         boundedBoxUrl = responseData['img_link'];
 
         print("Prediction");
         print(prediction);
         print("Bounded Box URL");
         print(boundedBoxUrl);
+
+        // Store the original uploaded image URL in AppState for display in chat
+        FFAppState().uploadedImagePath = imageUrl;
 
         // 5. Automatically send to Gemini API
         if (prediction.isNotEmpty) {
@@ -662,10 +674,12 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
         // Continue execution
       }
 
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(currentContext).hideCurrentSnackBar();
 
       // Close the bottom sheet first
-      Navigator.pop(context);
+      if (mounted && Navigator.canPop(currentContext)) {
+        Navigator.pop(currentContext);
+      }
 
       _model.isProcessing = false;
 
@@ -676,7 +690,16 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
           'message': geminiResponse,
         });
       } else {
-        // Add the complete analysis to chat history
+        // First, add user message with the image request
+        FFAppState().addToChatlist({
+          'isuser': true,
+          'message': "Detect Pest",
+        });
+        
+        // Make sure we have the current FFAppState().uploadedImagePath saved
+        print("Saved image URL for chat: ${FFAppState().uploadedImagePath}");
+        
+        // Then add the AI response with analysis
         FFAppState().addToChatlist({
           'isuser': false,
           'message': "I have analyzed the pest image and identified: $prediction\n\n$geminiResponse",
@@ -685,8 +708,10 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
 
       // Return to chat screen without showing a dialog
       return Future.delayed(Duration(milliseconds: 100), () {
-        // Navigate back to the chat page
-        context.pushNamed('/ai2');
+        // Navigate back to the chat page if context is still valid
+        if (mounted) {
+          currentContext.pushNamed('/ai2');
+        }
       });
 
     } catch (e) {
@@ -694,8 +719,8 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
       safeSetState(() {
         _model.isProcessing = false;
       });
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      showUploadMessage(context, 'Error: ${e.toString()}',
+      ScaffoldMessenger.of(currentContext).hideCurrentSnackBar();
+      showUploadMessage(currentContext, 'Error: ${e.toString()}',
           showLoading: false);
       
       // Add error message to chat
@@ -705,9 +730,9 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
       });
       
       // Close bottom sheet and return to chat
-      Navigator.pop(context);
+      Navigator.pop(currentContext);
       return Future.delayed(Duration(milliseconds: 100), () {
-        context.pushNamed('/ai2');
+        currentContext.pushNamed('/ai2');
       });
     }
   }
