@@ -216,15 +216,17 @@ class AntCall {
 class GeminiAPICall {
   static Future<ApiCallResponse> call({
     required String pestClass,
-    required String imageUrl,
+    required String imageUrl, // Keep this parameter for consistency, but we won't send it to Gemini
   }) async {
+    // Ensure pest class is properly formatted (remove any brackets from list representation)
+    final formattedPestClass = pestClass.replaceAll('[', '').replaceAll(']', '').trim();
     final ffApiRequestBody = '''
 {
   "contents": [
     {
       "parts": [
         {
-          "text": "This is the pest in my farm: ${escapeStringForJson(pestClass)}. Here is the image link: ${escapeStringForJson(imageUrl)}. \n\nWrite its name first, then in proper headings and bullet points answer these questions: \n- What is this pest? \n- Is it harmful? \n- What type of crops does it typically affect? \n- What are the reasons for its appearance? \n- What are the preventions? \n- How can I get rid of it? \n- What are organic and natural ways to eliminate it? \n- What resources can help me manage this pest?\n\nPlease format your response with clear headings and bullet points for readability."
+          "text": "This is the pest in my farm: ${escapeStringForJson(pestClass)}\n\n- What is this pest? \n- Is it harmful? \n- What type of crops does it typically affect? \n- What are the reasons for its appearance? \n- What are the preventions? \n- How can I get rid of it? \n- What are organic and natural ways to eliminate it?\n\nPlease format your response with clear headings and bullet points for readability.\n Respond in plain text without using Markdown formatting (e.g., no **bold**, *italics*, or # headings).\n Answer in bullet points and use proper headings with formatting."
         }
       ]
     }
@@ -236,12 +238,9 @@ class GeminiAPICall {
     "maxOutputTokens": 1024
   }
 }''';
-    // Replace 'YOUR_GEMINI_API_KEY' with your actual Gemini API key
-    const String geminiApiKey = 'AIzaSyBuLMRr8OWLyo9-3lygI-qeTWxlvqcRPrE'; // Replace with your actual API key
-    
     return ApiManager.instance.makeApiCall(
       callName: 'Gemini API',
-      apiUrl: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=$geminiApiKey',
+      apiUrl: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDzyWLzPjSE_wcayC75XX1pJ2SQxGudI1Q',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -258,10 +257,24 @@ class GeminiAPICall {
     );
   }
 
-  static String? solution(dynamic response) => castToType<String>(getJsonField(
+  static String? solution(dynamic response) {
+    try {
+      final text = castToType<String>(getJsonField(
         response,
         r'''$.candidates[0].content.parts[0].text''',
       ));
+      
+      if (text == null || text.isEmpty) {
+        print("Empty Gemini response");
+        return "No solution available for this pest. Please try again.";
+      }
+      
+      return text;
+    } catch (e) {
+      print("Error parsing Gemini response: $e");
+      return "Unable to parse Gemini response. Please try again.";
+    }
+  }
 }
 
 class ApiPagingParams {

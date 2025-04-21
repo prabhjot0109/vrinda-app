@@ -557,24 +557,38 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
   // Function to process images with AI
   Future<void> processImageWithAI(FFUploadedFile file) async {
     if (file.bytes == null) {
-      showUploadMessage(context, 'Invalid file data');
+      if (mounted) {
+        showUploadMessage(context, 'Invalid file data');
+      }
       return;
     }
 
-    // Store reference to the context for later use
-    final BuildContext currentContext = context;
-    
     try {
+      // Store reference to the BuildContext and ScaffoldMessengerState for later use
+      final BuildContext localContext = context;
+      final scaffoldMessenger = ScaffoldMessenger.of(localContext);
+      
       safeSetState(() {
         _model.isProcessing = true;
       });
+      
+      // Show loading message
+      if (mounted) {
+        scaffoldMessenger.showSnackBar(
+          SnackBar(
+            content: Text('Processing image...'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
 
       // 1. Upload to Supabase
       final supabase = Supabase.instance.client;
       final fileName = '${DateTime.now().millisecondsSinceEpoch}_${file.name}';
       print("File Name");
       print(fileName);
-      final storageResponse = supabase.storage
+      
+      await supabase.storage
           .from('images')
           .uploadBinary(
         fileName,
@@ -587,7 +601,7 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
       // Get the public URL
       final imageUrl = supabase.storage.from('images').getPublicUrl(fileName);
 
-      // Store image URL in AppState for use in chat
+      // Store image URL in AppState for use in chat display
       FFAppState().uploadedImagePath = imageUrl;
       
       print("Image URL");
@@ -617,12 +631,15 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
 
         // 4. Process the API response
         final responseData = jsonDecode(response.body);
+        
         // Handle prediction as list or string
         if (responseData['prediction'] is List) {
           prediction = (responseData['prediction'] as List).join(', ');
         } else {
           prediction = responseData['prediction'].toString();
         }
+        
+        // Get the bounded box image URL - this is the image with pest detection bounding box
         boundedBoxUrl = responseData['img_link'];
 
         print("Prediction");
@@ -630,22 +647,45 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
         print("Bounded Box URL");
         print(boundedBoxUrl);
 
-        // Store the original uploaded image URL in AppState for display in chat
-        FFAppState().uploadedImagePath = imageUrl;
-
-        // 5. Automatically send to Gemini API
+        // 5. Send to Gemini API right away
         if (prediction.isNotEmpty) {
-          final geminiOutput = await GeminiAPICall.call(
-            pestClass: prediction,
-            imageUrl: boundedBoxUrl,
-          );
+          try {
+            print("Calling Gemini API with pest class: $prediction");
+            print("Image URL being sent to Gemini: $imageUrl");
+            
+            final geminiOutput = await GeminiAPICall.call(
+              pestClass: prediction,
+              imageUrl: imageUrl,  // Used only for reference, not actual image processing
+            );
 
-          if (geminiOutput.succeeded) {
-            geminiResponse = GeminiAPICall.solution(geminiOutput.jsonBody) ?? 'No solution available';
-            print("Gemini Response Received");
-          } else {
-            geminiResponse = "Could not get pest management solutions at this time.";
-            print("Gemini API call failed");
+            print("Gemini API response status: ${geminiOutput.statusCode}");
+            
+            if (geminiOutput.succeeded) {
+              print("Gemini API raw response: ${geminiOutput.jsonBody}");
+              geminiResponse = GeminiAPICall.solution(geminiOutput.jsonBody) ?? 'No solution available';
+              print("Gemini Response Received: $geminiResponse");
+            } else {
+              // Print more details about the error response
+              print("Gemini API call failed with status code: ${geminiOutput.statusCode}");
+              print("Gemini API error response: ${geminiOutput.jsonBody}");
+              
+              // Try to extract error message from the response if possible
+              try {
+                final errorMessage = getJsonField(geminiOutput.jsonBody, r'''$.error.message''');
+                if (errorMessage != null) {
+                  print("Gemini API error message: $errorMessage");
+                  geminiResponse = "Error from Gemini API: $errorMessage";
+                } else {
+                  geminiResponse = "Could not get pest management solutions at this time (Error ${geminiOutput.statusCode}).";
+                }
+              } catch (e) {
+                print("Error parsing error response: $e");
+                geminiResponse = "Could not get pest management solutions at this time.";
+              }
+            }
+          } catch (geminiError) {
+            print("Gemini API Error: $geminiError");
+            geminiResponse = "Error getting pest management solutions: $geminiError";
           }
         } else {
           detectionFailed = true;
@@ -654,34 +694,25 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
       } catch (apiError) {
         print("Pest Detection API Error: $apiError");
         detectionFailed = true;
-        geminiResponse = "Pest detection failed.";
-        // Continue execution to show error in chat
+        geminiResponse = "Pest detection failed: $apiError";
       }
 
-      // 6. Update the model with results
+      // Update model state
       safeSetState(() {
         _model.predictionResult = prediction;
         _model.boundedBoxImageUrl = boundedBoxUrl;
         _model.isProcessing = false;
       });
 
-      try {
-        final Uint8List result_img =
-        await supabase.storage.from('images').download('result/$fileName.jpg');
-        print("temp downloaded");
-      } catch (downloadError) {
-        print("Could not download result image: $downloadError");
-        // Continue execution
+      // Hide any previous snackbars
+      if (mounted) {
+        scaffoldMessenger.hideCurrentSnackBar();
       }
 
-      ScaffoldMessenger.of(currentContext).hideCurrentSnackBar();
-
-      // Close the bottom sheet first
-      if (mounted && Navigator.canPop(currentContext)) {
-        Navigator.pop(currentContext);
+      // Close the bottom sheet
+      if (mounted && Navigator.canPop(localContext)) {
+        Navigator.pop(localContext);
       }
-
-      _model.isProcessing = false;
 
       // Add results to chat
       if (detectionFailed) {
@@ -696,9 +727,6 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
           'message': "Detect Pest",
         });
         
-        // Make sure we have the current FFAppState().uploadedImagePath saved
-        print("Saved image URL for chat: ${FFAppState().uploadedImagePath}");
-        
         // Then add the AI response with analysis
         FFAppState().addToChatlist({
           'isuser': false,
@@ -706,11 +734,10 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
         });
       }
 
-      // Return to chat screen without showing a dialog
+      // Return to chat screen
       return Future.delayed(Duration(milliseconds: 100), () {
-        // Navigate back to the chat page if context is still valid
         if (mounted) {
-          currentContext.pushNamed('/ai2');
+          context.pushNamed('/ai2');
         }
       });
 
@@ -719,21 +746,34 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
       safeSetState(() {
         _model.isProcessing = false;
       });
-      ScaffoldMessenger.of(currentContext).hideCurrentSnackBar();
-      showUploadMessage(currentContext, 'Error: ${e.toString()}',
-          showLoading: false);
       
-      // Add error message to chat
-      FFAppState().addToChatlist({
-        'isuser': false,
-        'message': "Pest detection failed. There was an error processing your image.",
-      });
-      
-      // Close bottom sheet and return to chat
-      Navigator.pop(currentContext);
-      return Future.delayed(Duration(milliseconds: 100), () {
-        currentContext.pushNamed('/ai2');
-      });
+      if (mounted) {
+        try {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          showUploadMessage(context, 'Error: ${e.toString()}', showLoading: false);
+        } catch (scaffoldError) {
+          print("Error accessing ScaffoldMessenger: $scaffoldError");
+        }
+        
+        // Add error message to chat
+        FFAppState().addToChatlist({
+          'isuser': false,
+          'message': "Pest detection failed. There was an error processing your image: $e",
+        });
+        
+        // Close bottom sheet and return to chat if possible
+        try {
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          }
+          
+          Future.delayed(Duration(milliseconds: 100), () {
+            context.pushNamed('/ai2');
+          });
+        } catch (navigationError) {
+          print("Error during navigation: $navigationError");
+        }
+      }
     }
   }
 }
