@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "238778896816",
+    "project_id": "philosia-vrinda",
+    "storage_bucket": "philosia-vrinda.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238778896816:android:52ec2395e62e90439f4675",
+        "android_client_info": {
+          "package_name": "com.philosia.vrinda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238778896816-f7o3uol2rpb2sq37l7j1ubssrk29lgdr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.philosia.vrinda",
+            "certificate_hash": "13e55182a1049359fb1c5ea95a318e1590a9216b"
+          }
+        },
+        {
+          "client_id": "238778896816-j0ovst3pm89a4p0led684ru42svn5jc3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.philosia.vrinda",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "238778896816-2d81ip8khfclagni8r79aedgu5t99c7v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZXr69jdWhrER0UTdoTiUFW4gwX6QkICk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238778896816-2d81ip8khfclagni8r79aedgu5t99c7v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "238778896816-eqbfljstus189oea3ituifkktso49v2p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.philosia.vrinda"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
