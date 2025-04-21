@@ -134,9 +134,24 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                 );
                 debugLogWidgetClass(_model);
 
-                return ListView.builder(
-                  padding: EdgeInsets.zero,
-                  scrollDirection: Axis.vertical,
+                return RefreshIndicator(
+                    onRefresh: () async {
+                  // Show loading animation
+                  setState(() {
+                    FFAppState().isLoading = true;
+                  });
+
+                  // Simulate refresh delay (or perform actual data refresh)
+                  await Future.delayed(Duration(milliseconds: 1500));
+
+                  // Hide loading indicator when done
+                  setState(() {
+                    FFAppState().isLoading = false;
+                  });
+                },
+                child: ListView.builder(
+                padding: EdgeInsets.only(bottom: 60.0), // Extra padding at bottom for better scrolling
+                scrollDirection: Axis.vertical,
                   itemCount: chat.length,
                   itemBuilder: (context, chatIndex) {
                     final chatItem = chat[chatIndex];
@@ -392,6 +407,7 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                     );
                   },
                   controller: _model.listViewController,
+                ),
                 );
               },
             ),
