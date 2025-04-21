@@ -18,6 +18,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:provider/provider.dart';
 import 'mobile_a_ichat_model.dart';
 export 'mobile_a_ichat_model.dart';
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 
 class MobileAIchatWidget extends StatefulWidget {
   const MobileAIchatWidget({super.key});
@@ -134,7 +135,7 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                 );
                 debugLogWidgetClass(_model);
 
-                return RefreshIndicator(
+                return CustomRefreshIndicator(
                     onRefresh: () async {
                   // Show loading animation
                   setState(() {
@@ -148,12 +149,60 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                   setState(() {
                     FFAppState().isLoading = false;
                   });
+                  // Required to complete the refresh properly
+                  return Future.value();
                 },
+                  builder: (
+                      BuildContext context,
+                      Widget child,
+                      IndicatorController controller,
+                      ) {
+                    return Stack(
+                      children: [
+                        child,
+                        if (controller.isLoading)
+                          Positioned(
+                            top: 20,
+                            left: 0,
+                            right: 0,
+                            child: Center(
+                              child: SpinKitChasingDots(
+                                color: FlutterFlowTheme.of(context).primary,
+                                size: 50.0,
+                              ),
+                            ),
+                          ),
+                      ],
+                    );
+                  },
                 child: ListView.builder(
                 padding: EdgeInsets.only(bottom: 60.0), // Extra padding at bottom for better scrolling
                 scrollDirection: Axis.vertical,
-                  itemCount: chat.length,
+                  itemCount: chat.isEmpty ? 1 : chat.length,
                   itemBuilder: (context, chatIndex) {
+                    if (chat.isEmpty) {
+                      // Show empty state when no messages
+                      return Container(
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 0.7,
+                        child: Center(
+                          child: Text(
+                            "Hi, I'm Vrinda AI.\nHow can I help you today?",
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme
+                                .of(context)
+                                .bodyMedium.copyWith(
+                              color: FlutterFlowTheme
+                                  .of(context)
+                                  .secondaryText,
+                              fontSize: 20.0,
+                            )
+                          ),
+                        ),
+                      );
+                    }
                     final chatItem = chat[chatIndex];
                     // Get the user info for profile image
                     final bool isUser = getJsonField(chatItem, r'''$.isuser''') == true;

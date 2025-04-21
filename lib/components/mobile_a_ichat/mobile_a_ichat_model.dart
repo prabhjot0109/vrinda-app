@@ -9,6 +9,7 @@ import 'dart:ui';
 import 'mobile_a_ichat_widget.dart' show MobileAIchatWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
+import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';

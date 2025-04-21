@@ -226,7 +226,7 @@ class GeminiAPICall {
     {
       "parts": [
         {
-          "text": "This is the pest in my farm: ${escapeStringForJson(pestClass)}\n\n- What is this pest? \n- Is it harmful? \n- What type of crops does it typically affect? \n- What are the reasons for its appearance? \n- What are the preventions? \n- How can I get rid of it? \n- What are organic and natural ways to eliminate it?\n\nPlease format your response with clear headings and bullet points for readability.\n Respond in plain text without using Markdown formatting (e.g., no **bold**, *italics*, or # headings).\n Answer in bullet points and use proper headings with formatting."
+          "text": "This is the pest in my farm: ${escapeStringForJson(pestClass)}\n\n- Start the chat directly with\n- What is this pest? \n- Is it harmful? \n- What type of crops does it typically affect? \n- What are the reasons for its appearance? \n- What are the preventions? \n- How can I get rid of it? \n- What are organic and natural ways to eliminate it?\n\nPlease format your response with clear headings and bullet points for readability.\n Respond in plain text without using Markdown formatting (e.g., no **bold**, *italics*, or # headings).\n Answer in bullet points and use proper headings with formatting."
         }
       ]
     }

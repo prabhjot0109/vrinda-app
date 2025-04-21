@@ -28,6 +28,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   flutter_blue_plus: ^1.20.7
+  custom_refresh_indicator: ^2.0.1
   aligned_tooltip: 0.0.1
   auto_size_text: 3.0.0
   badges: 2.0.2
