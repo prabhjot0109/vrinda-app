@@ -1,6 +1,6 @@
 # Vrinda - Kriyeta 4
 
-A new Flutter project.
+A Flutter project for the Vrinda app.
 
 ## Getting Started
 
