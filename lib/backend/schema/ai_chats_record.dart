@@ -16,25 +16,25 @@ class AiChatsRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "image" field.
-  String? _image;
-  String get image => _image ?? '';
-  bool hasImage() => _image != null;
+  // "user_prompt" field.
+  List<String>? _userPrompt;
+  List<String> get userPrompt => _userPrompt ?? const [];
+  bool hasUserPrompt() => _userPrompt != null;
 
-  // "text" field.
-  String? _text;
-  String get text => _text ?? '';
-  bool hasText() => _text != null;
+  // "ai_response" field.
+  List<String>? _aiResponse;
+  List<String> get aiResponse => _aiResponse ?? const [];
+  bool hasAiResponse() => _aiResponse != null;
 
-  // "chatHistory" field.
-  List<String>? _chatHistory;
-  List<String> get chatHistory => _chatHistory ?? const [];
-  bool hasChatHistory() => _chatHistory != null;
+  // "user_image_upload" field.
+  List<String>? _userImageUpload;
+  List<String> get userImageUpload => _userImageUpload ?? const [];
+  bool hasUserImageUpload() => _userImageUpload != null;
 
   void _initializeFields() {
-    _image = snapshotData['image'] as String?;
-    _text = snapshotData['text'] as String?;
-    _chatHistory = getDataList(snapshotData['chatHistory']);
+    _userPrompt = getDataList(snapshotData['user_prompt']);
+    _aiResponse = getDataList(snapshotData['ai_response']);
+    _userImageUpload = getDataList(snapshotData['user_image_upload']);
   }
 
   static CollectionReference get collection =>
@@ -80,24 +80,26 @@ class AiChatsRecord extends FirestoreRecord {
           name: '',
           nullable: false,
         ),
-        'image': debugSerializeParam(
-          image,
+        'user_prompt': debugSerializeParam(
+          userPrompt,
           ParamType.String,
+          isList: true,
           link:
               'https://app.flutterflow.io/project/vrinda-kriyeta4-tllf8o?tab=database',
           name: 'String',
           nullable: false,
         ),
-        'text': debugSerializeParam(
-          text,
+        'ai_response': debugSerializeParam(
+          aiResponse,
           ParamType.String,
+          isList: true,
           link:
               'https://app.flutterflow.io/project/vrinda-kriyeta4-tllf8o?tab=database',
           name: 'String',
           nullable: false,
         ),
-        'chatHistory': debugSerializeParam(
-          chatHistory,
+        'user_image_upload': debugSerializeParam(
+          userImageUpload,
           ParamType.String,
           isList: true,
           link:
@@ -108,15 +110,9 @@ class AiChatsRecord extends FirestoreRecord {
       };
 }
 
-Map<String, dynamic> createAiChatsRecordData({
-  String? image,
-  String? text,
-}) {
+Map<String, dynamic> createAiChatsRecordData() {
   final firestoreData = mapToFirestore(
-    <String, dynamic>{
-      'image': image,
-      'text': text,
-    }.withoutNulls,
+    <String, dynamic>{}.withoutNulls,
   );
 
   return firestoreData;
@@ -128,14 +124,14 @@ class AiChatsRecordDocumentEquality implements Equality<AiChatsRecord> {
   @override
   bool equals(AiChatsRecord? e1, AiChatsRecord? e2) {
     const listEquality = ListEquality();
-    return e1?.image == e2?.image &&
-        e1?.text == e2?.text &&
-        listEquality.equals(e1?.chatHistory, e2?.chatHistory);
+    return listEquality.equals(e1?.userPrompt, e2?.userPrompt) &&
+        listEquality.equals(e1?.aiResponse, e2?.aiResponse) &&
+        listEquality.equals(e1?.userImageUpload, e2?.userImageUpload);
   }
 
   @override
-  int hash(AiChatsRecord? e) =>
-      const ListEquality().hash([e?.image, e?.text, e?.chatHistory]);
+  int hash(AiChatsRecord? e) => const ListEquality()
+      .hash([e?.userPrompt, e?.aiResponse, e?.userImageUpload]);
 
   @override
   bool isValidKey(Object? o) => o is AiChatsRecord;

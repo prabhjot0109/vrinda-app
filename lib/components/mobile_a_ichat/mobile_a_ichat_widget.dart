@@ -176,7 +176,7 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                     );
                   },
                 child: ListView.builder(
-                padding: EdgeInsets.only(bottom: 60.0), // Extra padding at bottom for better scrolling
+                padding: EdgeInsets.only(bottom: 2.0), // Extra padding at bottom for better scrolling
                 scrollDirection: Axis.vertical,
                   itemCount: chat.isEmpty ? 1 : chat.length,
                   itemBuilder: (context, chatIndex) {
@@ -473,9 +473,7 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.0, 10.0, 10.0, 0.0),
+                      Expanded(
                         child: FFButtonWidget(
                           onPressed: () {
                             print('Button pressed ...');
@@ -484,6 +482,7 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                             'g0wk709a' /* Help with irrigation? */,
                           ),
                           options: FFButtonOptions(
+                            width: double.infinity,
                             height: 40.0,
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
@@ -491,134 +490,131 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).alternate,
                             textStyle: FlutterFlowTheme.of(context)
-                                .labelSmall
+                                .bodySmall
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .labelSmallFamily,
+                                      .bodySmallFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .labelSmallFamily),
+                                          .bodySmallFamily),
                                 ),
                             elevation: 0.0,
                             borderRadius: BorderRadius.circular(18.0),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.0, 10.0, 10.0, 10.0),
-                        child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: FFLocalizations.of(context).getText(
-                            'zcquu9i8' /* Sustainable farming practices? */,
-                          ),
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).alternate,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelSmallFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelSmallFamily),
-                                ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
+                      FFButtonWidget(
+                        onPressed: () {
+                          print('Button pressed ...');
+                        },
+                        text: FFLocalizations.of(context).getText(
+                          'zcquu9i8' /* Sustainable farming practices? */,
+                        ),
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).alternate,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .labelSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelSmallFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelSmallFamily),
+                              ),
+                          elevation: 0.0,
+                          borderRadius: BorderRadius.circular(18.0),
                         ),
                       ),
-                    ],
+                    ]
+                        .divide(SizedBox(height: 10.0))
+                        .around(SizedBox(height: 10.0)),
                   ),
                 ),
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.0, 10.0, 10.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: FFLocalizations.of(context).getText(
-                            'abts8ag1' /* Your current challenges? */,
-                          ),
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).alternate,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelSmallFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelSmallFamily),
-                                ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
+                      FFButtonWidget(
+                        onPressed: () {
+                          print('Button pressed ...');
+                        },
+                        text: FFLocalizations.of(context).getText(
+                          'abts8ag1' /* Your current challenges? */,
+                        ),
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).alternate,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .labelSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelSmallFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelSmallFamily),
+                              ),
+                          elevation: 0.0,
+                          borderRadius: BorderRadius.circular(16.0),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            10.0, 10.0, 10.0, 10.0),
-                        child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
-                          },
-                          text: FFLocalizations.of(context).getText(
-                            'p0oad8c8' /* Ideal crop to grow currently? */,
-                          ),
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).alternate,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .labelSmallFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .labelSmallFamily),
-                                ),
-                            elevation: 0.0,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
+                      FFButtonWidget(
+                        onPressed: () {
+                          print('Button pressed ...');
+                        },
+                        text: FFLocalizations.of(context).getText(
+                          'p0oad8c8' /* Ideal crop to grow currently? */,
+                        ),
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).alternate,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .labelSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelSmallFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelSmallFamily),
+                              ),
+                          elevation: 0.0,
+                          borderRadius: BorderRadius.circular(16.0),
                         ),
                       ),
-                    ],
+                    ]
+                        .divide(SizedBox(height: 10.0))
+                        .around(SizedBox(height: 10.0)),
                   ),
                 ),
-              ],
+              ].divide(SizedBox(width: 12.0)).around(SizedBox(width: 12.0)),
             ),
           ),
         Padding(
           padding: EdgeInsets.all(8.0),
           child: Material(
             color: Colors.transparent,
-            elevation: 5.0,
+            elevation: 10.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),
             ),
@@ -685,7 +681,8 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 width: 0.0,
                               ),
                               borderRadius: const BorderRadius.only(
@@ -695,7 +692,8 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 width: 0.0,
                               ),
                               borderRadius: const BorderRadius.only(
@@ -705,7 +703,8 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 width: 0.0,
                               ),
                               borderRadius: const BorderRadius.only(
@@ -716,8 +715,9 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            contentPadding: EdgeInsets.all(12.0),
-                            hoverColor: FlutterFlowTheme.of(context).alternate,
+                            contentPadding: EdgeInsets.all(16.0),
+                            hoverColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                           ),
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
@@ -799,64 +799,258 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                               useSafeArea: true,
                               context: context,
                               builder: (context) {
-                                return SizedBox(
-                                  height: 240.0,
-                                  child: AiBottomSheetWidget(),
+                                return Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: Container(
+                                    height: 240.0,
+                                    child: AiBottomSheetWidget(),
+                                  ),
                                 );
                               },
                             ).then((value) => safeSetState(() {}));
                           },
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
-                        child: AlignedTooltip(
-                          content: Padding(
-                            padding: EdgeInsets.all(12.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'f205439b' /* Tap to give a voice input. */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodySmall
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodySmallFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(FlutterFlowTheme.of(context)
-                                            .bodySmallFamily),
-                                  ),
+                      AlignedTooltip(
+                        content: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'bwii8oi8' /* Toggle the button to fetch and... */,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                          ),
+                        ),
+                        offset: 4.0,
+                        preferredDirection: AxisDirection.up,
+                        borderRadius: BorderRadius.circular(12.0),
+                        backgroundColor: FlutterFlowTheme.of(context).alternate,
+                        elevation: 4.0,
+                        tailBaseWidth: 24.0,
+                        tailLength: 12.0,
+                        waitDuration: Duration(milliseconds: 100),
+                        showDuration: Duration(milliseconds: 1500),
+                        triggerMode: TooltipTriggerMode.longPress,
+                        child: Container(
+                          height: 35.0,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(24.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).alternate,
                             ),
                           ),
-                          offset: 4.0,
-                          preferredDirection: AxisDirection.up,
-                          borderRadius: BorderRadius.circular(12.0),
-                          backgroundColor: FlutterFlowTheme.of(context).alternate,
-                          elevation: 4.0,
-                          tailBaseWidth: 24.0,
-                          tailLength: 12.0,
-                          waitDuration: Duration(milliseconds: 100),
-                          showDuration: Duration(milliseconds: 1000),
-                          triggerMode: TooltipTriggerMode.longPress,
-                          child: ToggleIcon(
-                            onPressed: () async {
-                              safeSetState(() => FFAppState().voiceTrigger =
-                                  !FFAppState().voiceTrigger);
-                            },
-                            value: FFAppState().voiceTrigger,
-                            onIcon: Icon(
-                              Icons.mic,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 20.0,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Stack(
+                                children: [
+                                  ToggleIcon(
+                                    onPressed: () async {
+                                      safeSetState(() =>
+                                          FFAppState().sensorDataFetch =
+                                              !FFAppState().sensorDataFetch);
+                                    },
+                                    value: FFAppState().sensorDataFetch,
+                                    onIcon: Icon(
+                                      Icons.sensors,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 20.0,
+                                    ),
+                                    offIcon: Icon(
+                                      Icons.sensors_off,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        34.0, 8.0, 0.0, 0.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'vkejjohs' /* Sensor Data */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodySmall
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmallFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ].addToEnd(SizedBox(width: 12.0)),
+                          ),
+                        ),
+                      ),
+                      AlignedTooltip(
+                        content: Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'rfakd6m8' /* Toggle the button to access da... */,
                             ),
-                            offIcon: Icon(
-                              Icons.mic_off,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 20.0,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                          ),
+                        ),
+                        offset: 4.0,
+                        preferredDirection: AxisDirection.up,
+                        borderRadius: BorderRadius.circular(12.0),
+                        backgroundColor: FlutterFlowTheme.of(context).alternate,
+                        elevation: 4.0,
+                        tailBaseWidth: 24.0,
+                        tailLength: 12.0,
+                        waitDuration: Duration(milliseconds: 100),
+                        showDuration: Duration(milliseconds: 1500),
+                        triggerMode: TooltipTriggerMode.longPress,
+                        child: Container(
+                          height: 35.0,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(24.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).alternate,
                             ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Stack(
+                                children: [
+                                  ToggleIcon(
+                                    onPressed: () async {
+                                      safeSetState(() =>
+                                          FFAppState().aiSearchButton =
+                                              !FFAppState().aiSearchButton);
+                                    },
+                                    value: FFAppState().aiSearchButton,
+                                    onIcon: Icon(
+                                      Icons.travel_explore,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 20.0,
+                                    ),
+                                    offIcon: Icon(
+                                      Icons.search_off,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        34.0, 8.0, 0.0, 0.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'dgzgvb4m' /* Search */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodySmall
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmallFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ].addToEnd(SizedBox(width: 12.0)),
+                          ),
+                        ),
+                      ),
+                      AlignedTooltip(
+                        content: Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'f205439b' /* Tap to give a voice input. */,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodySmall
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodySmallFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodySmallFamily),
+                                ),
+                          ),
+                        ),
+                        offset: 4.0,
+                        preferredDirection: AxisDirection.up,
+                        borderRadius: BorderRadius.circular(12.0),
+                        backgroundColor: FlutterFlowTheme.of(context).alternate,
+                        elevation: 4.0,
+                        tailBaseWidth: 24.0,
+                        tailLength: 12.0,
+                        waitDuration: Duration(milliseconds: 100),
+                        showDuration: Duration(milliseconds: 1000),
+                        triggerMode: TooltipTriggerMode.longPress,
+                        child: ToggleIcon(
+                          onPressed: () async {
+                            safeSetState(() => FFAppState().voiceTrigger =
+                                !FFAppState().voiceTrigger);
+                          },
+                          value: FFAppState().voiceTrigger,
+                          onIcon: Icon(
+                            Icons.mic,
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 20.0,
+                          ),
+                          offIcon: Icon(
+                            Icons.mic_off,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 20.0,
                           ),
                         ),
                       ),
@@ -906,64 +1100,61 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                                         FlutterFlowTheme.of(context).alternate,
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'MOBILE_A_ICHAT_COMP_Icon_5qjrztdr_ON_TAP');
-                                      FFAppState().showContainer = false;
-                                      safeSetState(() {});
-                                      FFAppState().usermessage =
-                                          _model.textController.text;
-                                      safeSetState(() {});
-                                      FFAppState().isLoading = true;
-                                      safeSetState(() {});
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'MOBILE_A_ICHAT_COMP_Icon_5qjrztdr_ON_TAP');
+                                    FFAppState().showContainer = false;
+                                    safeSetState(() {});
+                                    FFAppState().usermessage =
+                                        _model.textController.text;
+                                    safeSetState(() {});
+                                    FFAppState().isLoading = true;
+                                    safeSetState(() {});
+                                    FFAppState()
+                                        .addToChatlist(<String, dynamic>{
+                                      'message': FFAppState().usermessage,
+                                      'isuser': true,
+                                    });
+                                    safeSetState(() {});
+                                    safeSetState(() {
+                                      _model.textController?.clear();
+                                    });
+                                    _model.apiResulte8x = await PaulCall.call(
+                                      input: FFAppState().usermessage,
+                                    );
+
+                                    if ((_model.apiResulte8x?.succeeded ??
+                                        true)) {
                                       FFAppState()
                                           .addToChatlist(<String, dynamic>{
-                                        'message': FFAppState().usermessage,
-                                        'isuser': true,
+                                        'message': PaulCall.answer(
+                                          (_model.apiResulte8x?.jsonBody ?? ''),
+                                        ),
+                                        'isuser': false,
                                       });
                                       safeSetState(() {});
-                                      safeSetState(() {
-                                        _model.textController?.clear();
-                                      });
-                                      _model.apiResulte8x = await PaulCall.call(
-                                        input: FFAppState().usermessage,
-                                      );
+                                    }
+                                    FFAppState().isLoading = false;
+                                    safeSetState(() {});
+                                    await _model.listViewController?.animateTo(
+                                      _model.listViewController!.position
+                                          .maxScrollExtent,
+                                      duration: Duration(milliseconds: 100),
+                                      curve: Curves.ease,
+                                    );
 
-                                      if ((_model.apiResulte8x?.succeeded ??
-                                          true)) {
-                                        FFAppState()
-                                            .addToChatlist(<String, dynamic>{
-                                          'message': PaulCall.answer(
-                                            (_model.apiResulte8x?.jsonBody ?? ''),
-                                          ),
-                                          'isuser': false,
-                                        });
-                                        safeSetState(() {});
-                                      }
-                                      FFAppState().isLoading = false;
-                                      safeSetState(() {});
-                                      await _model.listViewController?.animateTo(
-                                        _model.listViewController!.position
-                                            .maxScrollExtent,
-                                        duration: Duration(milliseconds: 100),
-                                        curve: Curves.ease,
-                                      );
-
-                                      safeSetState(() {});
-                                    },
-                                    child: Icon(
-                                      Icons.arrow_upward,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
+                                    safeSetState(() {});
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_upward,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
                                   ),
                                 ),
                               );
@@ -979,7 +1170,9 @@ class _MobileAIchatWidgetState extends State<MobileAIchatWidget>
                           },
                         ),
                       ),
-                    ],
+                    ]
+                        .addToStart(SizedBox(width: 4.0))
+                        .addToEnd(SizedBox(width: 4.0)),
                   ),
                 ].divide(SizedBox(height: 8.0)).around(SizedBox(height: 8.0)),
               ),

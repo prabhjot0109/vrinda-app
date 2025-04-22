@@ -118,7 +118,7 @@ class _DroneAIchatWidgetState extends State<DroneAIchatWidget> with RouteAware {
           padding: EdgeInsets.all(8.0),
           child: Material(
             color: Colors.transparent,
-            elevation: 5.0,
+            elevation: 10.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),
             ),
@@ -132,8 +132,8 @@ class _DroneAIchatWidgetState extends State<DroneAIchatWidget> with RouteAware {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: BorderRadius.circular(24.0),
                 border: Border.all(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  width: 2.0,
+                  color: FlutterFlowTheme.of(context).alternate,
+                  width: 1.0,
                 ),
               ),
               child: Column(
@@ -185,7 +185,8 @@ class _DroneAIchatWidgetState extends State<DroneAIchatWidget> with RouteAware {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 width: 0.0,
                               ),
                               borderRadius: const BorderRadius.only(
@@ -195,7 +196,8 @@ class _DroneAIchatWidgetState extends State<DroneAIchatWidget> with RouteAware {
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 width: 0.0,
                               ),
                               borderRadius: const BorderRadius.only(
@@ -205,7 +207,8 @@ class _DroneAIchatWidgetState extends State<DroneAIchatWidget> with RouteAware {
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 width: 0.0,
                               ),
                               borderRadius: const BorderRadius.only(
@@ -216,8 +219,9 @@ class _DroneAIchatWidgetState extends State<DroneAIchatWidget> with RouteAware {
                             filled: true,
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            contentPadding: EdgeInsets.all(12.0),
-                            hoverColor: FlutterFlowTheme.of(context).alternate,
+                            contentPadding: EdgeInsets.all(16.0),
+                            hoverColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                           ),
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
@@ -311,109 +315,197 @@ class _DroneAIchatWidgetState extends State<DroneAIchatWidget> with RouteAware {
                           },
                         ),
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 36.0, 0.0),
-                        child: AlignedTooltip(
-                          content: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '301ixxlb' /* Toggle to analyze the map area... */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
-                                  ),
+                      AlignedTooltip(
+                        content: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              '301ixxlb' /* Toggle to analyze the map area... */,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                          ),
+                        ),
+                        offset: 4.0,
+                        preferredDirection: AxisDirection.up,
+                        borderRadius: BorderRadius.circular(12.0),
+                        backgroundColor: FlutterFlowTheme.of(context).alternate,
+                        elevation: 4.0,
+                        tailBaseWidth: 24.0,
+                        tailLength: 12.0,
+                        waitDuration: Duration(milliseconds: 100),
+                        showDuration: Duration(milliseconds: 1500),
+                        triggerMode: TooltipTriggerMode.longPress,
+                        child: Container(
+                          height: 35.0,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(24.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).alternate,
                             ),
                           ),
-                          offset: 4.0,
-                          preferredDirection: AxisDirection.up,
-                          borderRadius: BorderRadius.circular(12.0),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).alternate,
-                          elevation: 4.0,
-                          tailBaseWidth: 24.0,
-                          tailLength: 12.0,
-                          waitDuration: Duration(milliseconds: 100),
-                          showDuration: Duration(milliseconds: 1500),
-                          triggerMode: TooltipTriggerMode.longPress,
-                          child: Container(
-                            height: 35.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              borderRadius: BorderRadius.circular(24.0),
-                              border: Border.all(
-                                color: FlutterFlowTheme.of(context).alternate,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Stack(
+                                children: [
+                                  ToggleIcon(
+                                    onPressed: () async {
+                                      safeSetState(() =>
+                                          FFAppState().sensorDataFetch =
+                                              !FFAppState().sensorDataFetch);
+                                    },
+                                    value: FFAppState().sensorDataFetch,
+                                    onIcon: FaIcon(
+                                      FontAwesomeIcons.mapMarkedAlt,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 16.0,
+                                    ),
+                                    offIcon: Icon(
+                                      Icons.map_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 16.0,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        34.0, 8.0, 0.0, 0.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'hxjb4o2j' /* Map Image */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodySmall
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmallFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
                               ),
+                            ].addToEnd(SizedBox(width: 12.0)),
+                          ),
+                        ),
+                      ),
+                      AlignedTooltip(
+                        content: Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'ms9hrdb9' /* Toggle the button to access da... */,
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Stack(
-                                  children: [
-                                    ToggleIcon(
-                                      onPressed: () async {
-                                        safeSetState(() =>
-                                            FFAppState().sensorDataFetch =
-                                                !FFAppState().sensorDataFetch);
-                                      },
-                                      value: FFAppState().sensorDataFetch,
-                                      onIcon: FaIcon(
-                                        FontAwesomeIcons.mapMarkedAlt,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        size: 20.0,
-                                      ),
-                                      offIcon: Icon(
-                                        Icons.map_outlined,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 16.0,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          34.0, 8.0, 0.0, 0.0),
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'hxjb4o2j' /* Map Image */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodySmall
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmallFamily,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmallFamily),
-                                            ),
-                                      ),
-                                    ),
-                                  ],
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
                                 ),
-                              ].addToEnd(SizedBox(width: 12.0)),
+                          ),
+                        ),
+                        offset: 4.0,
+                        preferredDirection: AxisDirection.up,
+                        borderRadius: BorderRadius.circular(12.0),
+                        backgroundColor: FlutterFlowTheme.of(context).alternate,
+                        elevation: 4.0,
+                        tailBaseWidth: 24.0,
+                        tailLength: 12.0,
+                        waitDuration: Duration(milliseconds: 100),
+                        showDuration: Duration(milliseconds: 1500),
+                        triggerMode: TooltipTriggerMode.longPress,
+                        child: Container(
+                          height: 35.0,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(24.0),
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).alternate,
                             ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Stack(
+                                children: [
+                                  ToggleIcon(
+                                    onPressed: () async {
+                                      safeSetState(() =>
+                                          FFAppState().aiSearchButton =
+                                              !FFAppState().aiSearchButton);
+                                    },
+                                    value: FFAppState().aiSearchButton,
+                                    onIcon: Icon(
+                                      Icons.travel_explore,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 20.0,
+                                    ),
+                                    offIcon: Icon(
+                                      Icons.search_off,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        34.0, 8.0, 0.0, 0.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'lkbaw8bs' /* Search */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodySmall
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmallFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ].addToEnd(SizedBox(width: 12.0)),
                           ),
                         ),
                       ),
@@ -531,7 +623,9 @@ class _DroneAIchatWidgetState extends State<DroneAIchatWidget> with RouteAware {
                           },
                         ),
                       ),
-                    ],
+                    ]
+                        .addToStart(SizedBox(width: 1.0))
+                        .addToEnd(SizedBox(width: 1.0)),
                   ),
                 ].divide(SizedBox(height: 8.0)).around(SizedBox(height: 8.0)),
               ),

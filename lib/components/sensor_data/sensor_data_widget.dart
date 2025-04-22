@@ -124,10 +124,10 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                   width: 40.0,
                   height: 6.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).alternate,
+                    color: FlutterFlowTheme.of(context).secondaryText,
                     borderRadius: BorderRadius.circular(12.0),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).alternate,
+                      color: FlutterFlowTheme.of(context).secondaryText,
                     ),
                   ),
                   alignment: AlignmentDirectional(0.5, 0.0),
@@ -156,7 +156,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsets.all(16.0),
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -382,28 +382,10 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                             ),
                           ].divide(SizedBox(width: 16.0)),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                    borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 1.0,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
+                        Divider(
+                          thickness: 1.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -622,7 +604,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                   ),
                 ),
               ),
-            ].divide(SizedBox(height: 16.0)).around(SizedBox(height: 16.0)),
+            ].divide(SizedBox(height: 8.0)).around(SizedBox(height: 8.0)),
           ),
         ),
       ),

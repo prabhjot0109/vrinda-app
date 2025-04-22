@@ -116,13 +116,13 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
         final account4UsersRecord = snapshot.data!;
         _model.debugBackendQueries['account4UsersRecord_Scaffold_nmpcka54'] =
             debugSerializeParam(
-          account4UsersRecord,
-          ParamType.Document,
-          link:
+              account4UsersRecord,
+              ParamType.Document,
+              link:
               'https://app.flutterflow.io/project/vrinda-kriyeta4-tllf8o?tab=uiBuilder&page=account4',
-          name: 'users',
-          nullable: false,
-        );
+              name: 'users',
+              nullable: false,
+            );
         debugLogWidgetClass(_model);
 
         return Scaffold(
@@ -136,25 +136,26 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                 'db6fj3ez' /* Account */,
               ),
               style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Space Grotesk',
-                    letterSpacing: 0.0,
-                    useGoogleFonts:
-                        GoogleFonts.asMap().containsKey('Space Grotesk'),
-                  ),
+                fontFamily: 'Space Grotesk',
+                letterSpacing: 0.0,
+                useGoogleFonts:
+                GoogleFonts.asMap().containsKey('Space Grotesk'),
+              ),
             ),
             actions: [],
             centerTitle: false,
           ),
           body: SafeArea(
             top: true,
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
@@ -191,7 +192,7 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      FlutterFlowTheme.of(context).primary,
                                       width: 2.0,
                                     ),
                                   ),
@@ -204,12 +205,12 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                       fit: BoxFit.contain,
                                       errorBuilder:
                                           (context, error, stackTrace) =>
-                                              Image.asset(
-                                        'assets/images/error_image.png',
-                                        width: 120.0,
-                                        height: 120.0,
-                                        fit: BoxFit.contain,
-                                      ),
+                                          Image.asset(
+                                            'assets/images/error_image.png',
+                                            width: 120.0,
+                                            height: 120.0,
+                                            fit: BoxFit.contain,
+                                          ),
                                     ),
                                   ),
                                 ),
@@ -222,30 +223,30 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                       style: FlutterFlowTheme.of(context)
                                           .titleMedium
                                           .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMediumFamily,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMediumFamily),
-                                          ),
+                                        fontFamily:
+                                        FlutterFlowTheme.of(context)
+                                            .titleMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleMediumFamily),
+                                      ),
                                     ),
                                     Text(
                                       account4UsersRecord.email,
                                       style: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMediumFamily,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMediumFamily),
-                                          ),
+                                        fontFamily:
+                                        FlutterFlowTheme.of(context)
+                                            .labelMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .labelMediumFamily),
+                                      ),
                                     ),
                                   ].divide(SizedBox(height: 2.0)),
                                 ),
@@ -276,7 +277,7 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                 icon: FaIcon(
                                   FontAwesomeIcons.edit,
                                   color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  FlutterFlowTheme.of(context).primaryText,
                                   size: 20.0,
                                 ),
                                 options: FFButtonOptions(
@@ -291,20 +292,20 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyMediumFamily,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily),
-                                      ),
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                        FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily),
+                                  ),
                                   elevation: 0.0,
                                   borderSide: BorderSide(
                                     color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    FlutterFlowTheme.of(context).alternate,
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(12.0),
@@ -315,7 +316,7 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                     width: 1.0,
                                   ),
                                   hoverTextColor:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
                             ),
@@ -323,9 +324,13 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                         ),
                       ),
                     ),
-                    Container(
+                  ),
+                  Padding(
+                    padding:
+                    EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    child: Container(
                       width: double.infinity,
-                      height: 524.0,
+                      height: 580.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         borderRadius: BorderRadius.circular(12.0),
@@ -362,12 +367,12 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                         borderRadius:
-                                            BorderRadius.circular(0.0),
+                                        BorderRadius.circular(0.0),
                                       ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
@@ -376,72 +381,72 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
+                                              fontFamily:
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyMediumFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                  .asMap()
+                                                  .containsKey(
+                                                  FlutterFlowTheme.of(
+                                                      context)
+                                                      .bodyMediumFamily),
+                                            ),
                                           ),
                                           Container(
                                             width: 80.0,
                                             height: 40.0,
                                             decoration: BoxDecoration(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
                                               borderRadius:
-                                                  BorderRadius.circular(20.0),
+                                              BorderRadius.circular(20.0),
                                               border: Border.all(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                FlutterFlowTheme.of(context)
+                                                    .alternate,
                                               ),
                                             ),
                                             child: Stack(
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
-                                                          0.95, 0.0),
+                                                  AlignmentDirectional(
+                                                      0.95, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                8.0, 0.0),
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(0.0, 0.0,
+                                                        8.0, 0.0),
                                                     child: Icon(
                                                       Icons.nights_stay,
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .secondaryText,
                                                       size: 24.0,
                                                     ),
                                                   ),
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
-                                                          -0.85, 0.0),
+                                                  AlignmentDirectional(
+                                                      -0.85, 0.0),
                                                   child: Container(
                                                     width: 32.0,
                                                     height: 32.0,
                                                     decoration: BoxDecoration(
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .secondaryText,
                                                       boxShadow: [
                                                         BoxShadow(
                                                           blurRadius: 4.0,
                                                           color:
-                                                              Color(0x430B0D0F),
+                                                          Color(0x430B0D0F),
                                                           offset: Offset(
                                                             0.0,
                                                             2.0,
@@ -449,14 +454,14 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                                         )
                                                       ],
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              30.0),
+                                                      BorderRadius.circular(
+                                                          30.0),
                                                       shape: BoxShape.rectangle,
                                                       border: Border.all(
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
+                                                        FlutterFlowTheme.of(
+                                                            context)
+                                                            .secondaryText,
                                                       ),
                                                     ),
                                                   ),
@@ -486,14 +491,14 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                         color: FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                         borderRadius:
-                                            BorderRadius.circular(0.0),
+                                        BorderRadius.circular(0.0),
                                       ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             FFLocalizations.of(context).getText(
@@ -502,72 +507,72 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
                                                 .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLargeFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                                ),
+                                              fontFamily:
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                  .asMap()
+                                                  .containsKey(
+                                                  FlutterFlowTheme.of(
+                                                      context)
+                                                      .bodyLargeFamily),
+                                            ),
                                           ),
                                           Container(
                                             width: 80.0,
                                             height: 40.0,
                                             decoration: BoxDecoration(
                                               color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
                                               borderRadius:
-                                                  BorderRadius.circular(20.0),
+                                              BorderRadius.circular(20.0),
                                               border: Border.all(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                FlutterFlowTheme.of(context)
+                                                    .alternate,
                                               ),
                                             ),
                                             child: Stack(
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
-                                                          -0.9, 0.0),
+                                                  AlignmentDirectional(
+                                                      -0.9, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 2.0,
-                                                                0.0, 0.0),
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(8.0, 2.0,
+                                                        0.0, 0.0),
                                                     child: Icon(
                                                       Icons.wb_sunny_rounded,
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .secondaryText,
                                                       size: 24.0,
                                                     ),
                                                   ),
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
-                                                          0.9, 0.0),
+                                                  AlignmentDirectional(
+                                                      0.9, 0.0),
                                                   child: Container(
                                                     width: 32.0,
                                                     height: 32.0,
                                                     decoration: BoxDecoration(
                                                       color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
+                                                      FlutterFlowTheme.of(
+                                                          context)
+                                                          .primary,
                                                       boxShadow: [
                                                         BoxShadow(
                                                           blurRadius: 4.0,
                                                           color:
-                                                              Color(0x430B0D0F),
+                                                          Color(0x430B0D0F),
                                                           offset: Offset(
                                                             0.0,
                                                             2.0,
@@ -575,14 +580,14 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                                         )
                                                       ],
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              30.0),
+                                                      BorderRadius.circular(
+                                                          30.0),
                                                       shape: BoxShape.rectangle,
                                                       border: Border.all(
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                                        FlutterFlowTheme.of(
+                                                            context)
+                                                            .primary,
                                                       ),
                                                     ),
                                                   ),
@@ -615,7 +620,7 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -633,17 +638,17 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
+                                          fontFamily:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                          GoogleFonts.asMap()
+                                              .containsKey(
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily),
+                                        ),
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),
@@ -675,7 +680,7 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -688,22 +693,81 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                       ),
                                       Text(
                                         FFLocalizations.of(context).getText(
-                                          '0k9g8mpd' /* Sensor settings & scan alerts */,
+                                          '0k9g8mpd' /* Sensor Settings */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
+                                          fontFamily:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                          GoogleFonts.asMap()
+                                              .containsKey(
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily),
+                                        ),
+                                      ),
+                                    ].divide(SizedBox(width: 12.0)),
+                                  ),
+                                  Icon(
+                                    Icons.chevron_right,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Divider(
+                              thickness: 1.0,
+                              color: FlutterFlowTheme.of(context).alternate,
+                            ),
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'ACCOUNT4_PAGE_Row_xc678e3a_ON_TAP');
+
+                                context.pushNamed(AlertsPageWidget.routeName);
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Icon(
+                                        Icons.add_alert,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          'y9wd0uws' /* Alert Settings */,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                          fontFamily:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                          GoogleFonts.asMap()
+                                              .containsKey(
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily),
+                                        ),
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),
@@ -734,12 +798,12 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: [
                                       Icon(
                                         Icons.settings_outlined,
@@ -754,17 +818,17 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
+                                          fontFamily:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                          GoogleFonts.asMap()
+                                              .containsKey(
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily),
+                                        ),
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),
@@ -796,12 +860,12 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: [
                                       FaIcon(
                                         FontAwesomeIcons.database,
@@ -816,17 +880,17 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
+                                          fontFamily:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                          GoogleFonts.asMap()
+                                              .containsKey(
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily),
+                                        ),
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),
@@ -865,7 +929,7 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -883,17 +947,17 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
+                                          fontFamily:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                          GoogleFonts.asMap()
+                                              .containsKey(
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily),
+                                        ),
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),
@@ -924,7 +988,7 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
@@ -943,17 +1007,17 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
+                                          fontFamily:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                          GoogleFonts.asMap()
+                                              .containsKey(
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily),
+                                        ),
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),
@@ -984,7 +1048,7 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1002,17 +1066,17 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
+                                          fontFamily:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                          GoogleFonts.asMap()
+                                              .containsKey(
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily),
+                                        ),
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),
@@ -1044,7 +1108,7 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -1062,17 +1126,17 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLargeFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                            ),
+                                          fontFamily:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                          GoogleFonts.asMap()
+                                              .containsKey(
+                                              FlutterFlowTheme.of(
+                                                  context)
+                                                  .bodyLargeFamily),
+                                        ),
                                       ),
                                     ].divide(SizedBox(width: 12.0)),
                                   ),
@@ -1089,61 +1153,60 @@ class _Account4WidgetState extends State<Account4Widget> with RouteAware {
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          logFirebaseEvent('ACCOUNT4_PAGE_LOG_OUT_BTN_ON_TAP');
-                          GoRouter.of(context).prepareAuthEvent();
-                          await authManager.signOut();
-                          GoRouter.of(context).clearRedirectLocation();
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent('ACCOUNT4_PAGE_LOG_OUT_BTN_ON_TAP');
+                        GoRouter.of(context).prepareAuthEvent();
+                        await authManager.signOut();
+                        GoRouter.of(context).clearRedirectLocation();
 
-                          context.goNamedAuth(
-                              SelectLanguageWidget.routeName, context.mounted);
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          'gn5eejaa' /* Log Out */,
+                        context.goNamedAuth(
+                            SelectLanguageWidget.routeName, context.mounted);
+                      },
+                      text: FFLocalizations.of(context).getText(
+                        'gn5eejaa' /* Log Out */,
+                      ),
+                      options: FFButtonOptions(
+                        width: 180.0,
+                        height: 50.0,
+                        padding: EdgeInsets.all(8.0),
+                        iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Colors.transparent,
+                        textStyle:
+                        FlutterFlowTheme.of(context).titleMedium.override(
+                          fontFamily: FlutterFlowTheme.of(context)
+                              .titleMediumFamily,
+                          color: FlutterFlowTheme.of(context).error,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap()
+                              .containsKey(FlutterFlowTheme.of(context)
+                              .titleMediumFamily),
                         ),
-                        options: FFButtonOptions(
-                          width: 180.0,
-                          height: 50.0,
-                          padding: EdgeInsets.all(8.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: Colors.transparent,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .titleMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .titleMediumFamily,
-                                color: FlutterFlowTheme.of(context).error,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .titleMediumFamily),
-                              ),
-                          elevation: 0.0,
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                          hoverColor:
-                              FlutterFlowTheme.of(context).primaryBackground,
-                          hoverBorderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 1.0,
-                          ),
-                          hoverTextColor:
-                              FlutterFlowTheme.of(context).primaryText,
+                        elevation: 0.0,
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 1.0,
                         ),
+                        borderRadius: BorderRadius.circular(8.0),
+                        hoverColor:
+                        FlutterFlowTheme.of(context).primaryBackground,
+                        hoverBorderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 1.0,
+                        ),
+                        hoverTextColor:
+                        FlutterFlowTheme.of(context).primaryText,
                       ),
                     ),
-                  ]
-                      .divide(SizedBox(height: 24.0))
-                      .addToStart(SizedBox(height: 16.0))
-                      .addToEnd(SizedBox(height: 56.0)),
-                ),
+                  ),
+                ]
+                    .divide(SizedBox(height: 36.0))
+                    .addToStart(SizedBox(height: 16.0))
+                    .addToEnd(SizedBox(height: 60.0)),
               ),
             ),
           ),

@@ -57,7 +57,9 @@ const debugRouteLinkMap = {
   '/sensoralertPage':
       'https://app.flutterflow.io/project/vrinda-kriyeta4-tllf8o?tab=uiBuilder&page=sensoralertPage',
   '/analytics3':
-      'https://app.flutterflow.io/project/vrinda-kriyeta4-tllf8o?tab=uiBuilder&page=analytics3'
+      'https://app.flutterflow.io/project/vrinda-kriyeta4-tllf8o?tab=uiBuilder&page=analytics3',
+  '/alertsPage':
+      'https://app.flutterflow.io/project/vrinda-kriyeta4-tllf8o?tab=uiBuilder&page=alertsPage'
 };
 
 class AppStateNotifier extends ChangeNotifier {
@@ -217,6 +219,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   initialPage: 'analytics3',
                   page: Analytics3Widget(),
                 ),
+        ),
+        FFRoute(
+          name: AlertsPageWidget.routeName,
+          path: AlertsPageWidget.routePath,
+          builder: (context, params) => AlertsPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

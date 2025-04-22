@@ -136,12 +136,12 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            borderColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             borderRadius: 50.0,
                             buttonSize: 40.0,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             icon: Icon(
                               Icons.chevron_left,
                               color: FlutterFlowTheme.of(context).primaryText,
@@ -202,10 +202,10 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                                          .alternate,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(50.0),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -213,25 +213,25 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
                                           .secondaryBackground,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(50.0),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(50.0),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
                                       width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(12.0),
+                                    borderRadius: BorderRadius.circular(50.0),
                                   ),
                                   filled: true,
                                   fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                      .primaryBackground,
                                   hoverColor: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                   prefixIcon: Icon(
@@ -278,12 +278,12 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
                             ),
                           ),
                           FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            borderColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             borderRadius: 50.0,
                             buttonSize: 40.0,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             icon: FaIcon(
                               FontAwesomeIcons.edit,
                               color: FlutterFlowTheme.of(context).primaryText,
@@ -315,9 +315,9 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
             child: FlutterFlowIconButton(
               borderColor: FlutterFlowTheme.of(context).alternate,
               borderRadius: 12.0,
-              borderWidth: 2.0,
+              borderWidth: 1.0,
               buttonSize: 40.0,
-              fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+              fillColor: FlutterFlowTheme.of(context).primaryBackground,
               hoverColor: FlutterFlowTheme.of(context).alternate,
               hoverIconColor: FlutterFlowTheme.of(context).primaryText,
               icon: Icon(
@@ -340,25 +340,22 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
                     FormFieldController<int>(
                   _model.dropDownValue ??= 1,
                 ),
-                options: List<int>.from([1, 2, 3]),
+                options: List<int>.from([1, 2]),
                 optionLabels: [
                   FFLocalizations.of(context).getText(
                     'ly0jc18a' /* Mobile AI Model */,
                   ),
                   FFLocalizations.of(context).getText(
                     '1bt3l0vi' /* Drone AI Model */,
-                  ),
-                  FFLocalizations.of(context).getText(
-                    'vc1496nh' /* Soil Health Model */,
                   )
                 ],
                 onChanged: (val) =>
                     safeSetState(() => _model.dropDownValue = val),
-                width: 126.0,
+                width: 136.0,
                 height: 40.0,
                 textStyle: FlutterFlowTheme.of(context).bodySmall.override(
                       fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
-                      color: FlutterFlowTheme.of(context).primaryText,
+                      color: FlutterFlowTheme.of(context).secondaryText,
                       letterSpacing: 0.0,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
                           FlutterFlowTheme.of(context).bodySmallFamily),
@@ -368,15 +365,15 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
                 ),
                 icon: Icon(
                   Icons.keyboard_arrow_down_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 20.0,
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  size: 16.0,
                 ),
-                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                fillColor: FlutterFlowTheme.of(context).primaryBackground,
                 elevation: 2.0,
                 borderColor: FlutterFlowTheme.of(context).alternate,
-                borderWidth: 2.0,
+                borderWidth: 1.0,
                 borderRadius: 8.0,
-                margin: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 6.0, 0.0),
+                margin: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                 hidesUnderline: true,
                 isOverButton: false,
                 isSearchable: false,
@@ -390,9 +387,9 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
               child: FlutterFlowIconButton(
                 borderColor: FlutterFlowTheme.of(context).alternate,
                 borderRadius: 12.0,
-                borderWidth: 2.0,
+                borderWidth: 1.0,
                 buttonSize: 40.0,
-                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                fillColor: FlutterFlowTheme.of(context).primaryBackground,
                 hoverColor: FlutterFlowTheme.of(context).alternate,
                 hoverIconColor: FlutterFlowTheme.of(context).primaryText,
                 icon: FaIcon(
@@ -413,16 +410,13 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
           child: Builder(
             builder: (context) {
               if (valueOrDefault<bool>(
-                _model.dropDownValue ==
-                    valueOrDefault<int>(
-                      random_data.randomInteger(1, 1),
-                      1,
-                    ),
+                _model.dropDownValue == 1,
                 true,
               )) {
                 return wrapWithModel(
                   model: _model.mobileAIchatModel,
                   updateCallback: () => safeSetState(() {}),
+                  updateOnChange: true,
                   child: Builder(builder: (_) {
                     return DebugFlutterFlowModelContext(
                       rootModel: _model.rootModel,
@@ -430,10 +424,7 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
                     );
                   }),
                 );
-              } else if (valueOrDefault<bool>(
-                _model.dropDownValue == 2,
-                true,
-              )) {
+              } else {
                 return wrapWithModel(
                   model: _model.droneAIchatModel,
                   updateCallback: () => safeSetState(() {}),
@@ -441,17 +432,6 @@ class _Ai2WidgetState extends State<Ai2Widget> with RouteAware {
                     return DebugFlutterFlowModelContext(
                       rootModel: _model.rootModel,
                       child: DroneAIchatWidget(),
-                    );
-                  }),
-                );
-              } else {
-                return wrapWithModel(
-                  model: _model.soilhealthAIModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: Builder(builder: (_) {
-                    return DebugFlutterFlowModelContext(
-                      rootModel: _model.rootModel,
-                      child: SoilhealthAIWidget(),
                     );
                   }),
                 );

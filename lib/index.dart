@@ -21,3 +21,4 @@ export '/pages/datamanage_page/datamanage_page_widget.dart'
 export '/pages/sensoralert_page/sensoralert_page_widget.dart'
     show SensoralertPageWidget;
 export '/pages/analytics3/analytics3_widget.dart' show Analytics3Widget;
+export '/pages/alerts_page/alerts_page_widget.dart' show AlertsPageWidget;

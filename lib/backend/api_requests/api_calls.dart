@@ -116,7 +116,7 @@ class PaulCall {
   "systemInstruction": {
     "parts": [
       {
-        "text": "You are a agriculture and farming expert from India. Provide answers in a beginner friendly simple language. Use examples in explaining things, if possible. If a crop pest's name is recieved in input, then respond with solutions of managing that pest in the farm. Respond in plain text without using Markdown formatting (e.g., no **bold**, *italics*, or # headings)."
+        "text": "You are a agriculture and farming expert from India. Provide answers in a beginner friendly simple language. Use examples in explaining things, if possible. If soil nutrients like NPK, Ph, soil moisture are entered as prompt, assess them and suggest ideal values, and most importantly give suggestions to reach from current reading to ideal readings. These suggestion can be in term of fertilizer(type, amount).Respond with proper headings and use bullet points. Respond in plain text without using Markdown formatting (e.g., no **bold**, *italics*, or # headings)."
       }
     ]
   },
@@ -148,7 +148,7 @@ class PaulCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
-      cache: false,
+      cache: true,
       isStreamingApi: false,
       alwaysAllowBody: false,
     );

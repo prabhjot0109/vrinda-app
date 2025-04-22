@@ -38,8 +38,6 @@ class Ai2Model extends FlutterFlowModel<Ai2Widget> {
   late MobileAIchatModel mobileAIchatModel;
   // Model for droneAIchat component.
   late DroneAIchatModel droneAIchatModel;
-  // Model for soilhealthAI component.
-  late SoilhealthAIModel soilhealthAIModel;
 
   final Map<String, DebugDataField> debugGeneratorVariables = {};
   final Map<String, DebugDataField> debugBackendQueries = {};
@@ -48,7 +46,6 @@ class Ai2Model extends FlutterFlowModel<Ai2Widget> {
   void initState(BuildContext context) {
     mobileAIchatModel = createModel(context, () => MobileAIchatModel());
     droneAIchatModel = createModel(context, () => DroneAIchatModel());
-    soilhealthAIModel = createModel(context, () => SoilhealthAIModel());
 
     debugLogWidgetClass(this);
   }
@@ -60,7 +57,6 @@ class Ai2Model extends FlutterFlowModel<Ai2Widget> {
 
     mobileAIchatModel.dispose();
     droneAIchatModel.dispose();
-    soilhealthAIModel.dispose();
   }
 
   @override
@@ -90,8 +86,6 @@ class Ai2Model extends FlutterFlowModel<Ai2Widget> {
               mobileAIchatModel?.toWidgetClassDebugData(),
           'droneAIchatModel (droneAIchat)':
               droneAIchatModel?.toWidgetClassDebugData(),
-          'soilhealthAIModel (soilhealthAI)':
-              soilhealthAIModel?.toWidgetClassDebugData(),
           ...widgetBuilderComponents.map(
             (key, value) => MapEntry(
               key,

@@ -252,7 +252,7 @@ class _Home1WidgetState extends State<Home1Widget>
                     padding: EdgeInsets.all(16.0),
                     child: Material(
                       color: Colors.transparent,
-                      elevation: 0.0,
+                      elevation: 2.0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
@@ -263,17 +263,6 @@ class _Home1WidgetState extends State<Home1Widget>
                         ),
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 2.0,
-                              color: FlutterFlowTheme.of(context).alternate,
-                              offset: Offset(
-                                0.0,
-                                0.0,
-                              ),
-                              spreadRadius: 2.0,
-                            )
-                          ],
                           borderRadius: BorderRadius.circular(12.0),
                           border: Border.all(
                             color: FlutterFlowTheme.of(context).alternate,
@@ -406,21 +395,10 @@ class _Home1WidgetState extends State<Home1Widget>
                           decoration: BoxDecoration(
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 2.0,
-                                color: FlutterFlowTheme.of(context).alternate,
-                                offset: Offset(
-                                  0.0,
-                                  0.0,
-                                ),
-                                spreadRadius: 2.0,
-                              )
-                            ],
                             borderRadius: BorderRadius.circular(12.0),
                             border: Border.all(
                               color: FlutterFlowTheme.of(context).alternate,
-                              width: 2.0,
+                              width: 1.0,
                             ),
                           ),
                           child: Padding(
@@ -595,26 +573,20 @@ class _Home1WidgetState extends State<Home1Widget>
                                                 ),
                                                 '30',
                                               )}℃',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineLargeFamily,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineLargeFamily),
-                                                      ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .headlineLarge
+                                                  .override(
+                                                    fontFamily: 'Space Grotesk',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    letterSpacing: 0.0,
+                                                    useGoogleFonts: GoogleFonts
+                                                            .asMap()
+                                                        .containsKey(
+                                                            'Space Grotesk'),
+                                                  ),
                                             ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -896,7 +868,7 @@ class _Home1WidgetState extends State<Home1Widget>
                                       'assets/images/ChatGPT_Image_Apr_18,_2025,_07_31_53_PM.png',
                                       width: double.infinity,
                                       height: double.infinity,
-                                      fit: BoxFit.contain,
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
                                 ),
@@ -2153,6 +2125,7 @@ class _Home1WidgetState extends State<Home1Widget>
                         borderRadius: BorderRadius.circular(16.0),
                         border: Border.all(
                           color: FlutterFlowTheme.of(context).alternate,
+                          width: 1.0,
                         ),
                       ),
                       child: Column(
@@ -2526,7 +2499,7 @@ class _Home1WidgetState extends State<Home1Widget>
                                       borderColor:
                                           FlutterFlowTheme.of(context).primary,
                                       borderWidth: 1.0,
-                                      borderRadius: BorderRadius.circular(12.0),
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     unselectedChipStyle: ChipStyle(
                                       backgroundColor:
@@ -2881,7 +2854,7 @@ class _Home1WidgetState extends State<Home1Widget>
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmallFamily),
                                       ),
-                                  elevation: 0.0,
+                                  elevation: 2.0,
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).primary,
                                   ),

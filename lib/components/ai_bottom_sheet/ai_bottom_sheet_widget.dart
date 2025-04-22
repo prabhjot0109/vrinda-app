@@ -46,13 +46,13 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
-      elevation: 5.0,
+      elevation: 10.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
-          topLeft: Radius.circular(16.0),
-          topRight: Radius.circular(16.0),
+          topLeft: Radius.circular(24.0),
+          topRight: Radius.circular(24.0),
         ),
       ),
       child: Container(
@@ -62,14 +62,15 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
-            topLeft: Radius.circular(16.0),
-            topRight: Radius.circular(16.0),
+            topLeft: Radius.circular(24.0),
+            topRight: Radius.circular(24.0),
           ),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
@@ -77,26 +78,30 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
                   width: 40.0,
                   height: 6.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                    borderRadius: BorderRadius.circular(4.0),
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    borderRadius: BorderRadius.circular(12.0),
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      width: 2.0,
+                    ),
                   ),
                   alignment: AlignmentDirectional(0.5, 0.0),
                 ),
               ),
-              Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     'poiwhbx8' /* Upload to Vrinda AI */,
                   ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).titleLarge.override(
-                    fontFamily:
-                    FlutterFlowTheme.of(context).titleLargeFamily,
-                    letterSpacing: 0.0,
-                    useGoogleFonts: GoogleFonts.asMap().containsKey(
-                        FlutterFlowTheme.of(context).titleLargeFamily),
-                  ),
+                        fontFamily:
+                            FlutterFlowTheme.of(context).titleLargeFamily,
+                        letterSpacing: 0.0,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).titleLargeFamily),
+                      ),
                 ),
               ),
               Padding(
@@ -114,7 +119,7 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
                           height: 60.0,
                           decoration: BoxDecoration(
                             color:
-                            FlutterFlowTheme.of(context).primaryBackground,
+                                FlutterFlowTheme.of(context).primaryBackground,
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           child: FlutterFlowIconButton(
@@ -210,7 +215,7 @@ class _AiBottomSheetWidgetState extends State<AiBottomSheetWidget> {
                           height: 60.0,
                           decoration: BoxDecoration(
                             color:
-                            FlutterFlowTheme.of(context).primaryBackground,
+                                FlutterFlowTheme.of(context).primaryBackground,
                             borderRadius: BorderRadius.circular(30.0),
                           ),
                           child: FlutterFlowIconButton(
