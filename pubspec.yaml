@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -45,7 +45,7 @@ dependencies:
   cloud_functions_web: 4.10.4
   collection: 1.19.0
   csslib: 0.17.3
-  debug_panel_proto: 
+  debug_panel_proto:
     git:
       url: https://github.com/FlutterFlow/debug_panel_proto.git
       ref: v0.1.4
@@ -130,6 +130,7 @@ dependencies:
   sign_in_with_apple_platform_interface: 1.1.0
   sign_in_with_apple_web: 2.1.0
   smooth_page_indicator: 1.1.0
+  speech_to_text: ^6.6.1
   sqflite: 2.3.3+1
   sqflite_common: 2.5.4+3
   stream_transform: 2.1.0
@@ -168,7 +169,7 @@ dependency_overrides:
 dev_dependencies:
   flutter_launcher_icons: 0.13.1
   flutter_lints: 4.0.0
-  flutterflow_debug_panel: 
+  flutterflow_debug_panel:
     git:
       url: https://github.com/FlutterFlow/debug_panel_devtool.git
       ref: v0.2.2
@@ -177,23 +178,20 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 flutter_launcher_icons:
-  android: 'launcher_icon'
+  android: "launcher_icon"
   ios: true
   web:
     generate: true
-  image_path: 'assets/images/app_launcher_icon.png'
-  adaptive_icon_background: '#000000'
-  adaptive_icon_foreground: 'assets/images/adaptive_foreground_icon.png'
-
+  image_path: "assets/images/app_launcher_icon.png"
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/images/adaptive_foreground_icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -214,7 +212,6 @@ flutter:
     - family: MyFlutterApp
       fonts:
         - asset: assets/fonts/MyFlutterApp.ttf
-
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -241,4 +238,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-

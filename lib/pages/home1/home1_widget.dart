@@ -982,7 +982,7 @@ class _Home1WidgetState extends State<Home1Widget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 6.0, 0.0, 2.0),
                                   child: Text(
-                                    FFAppState().moisturevalue,
+                                    "${FFAppState().moisturevalue} %",
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall
@@ -1208,7 +1208,7 @@ class _Home1WidgetState extends State<Home1Widget>
                                               ),
                                         ),
                                         TextSpan(
-                                          text: FFAppState().Nvalue,
+                                          text: "${FFAppState().Nvalue} mg/kg",
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1245,7 +1245,7 @@ class _Home1WidgetState extends State<Home1Widget>
                                               ),
                                         ),
                                         TextSpan(
-                                          text: FFAppState().Pvalue,
+                                          text: "${FFAppState().Pvalue} mg/kg",
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1282,7 +1282,7 @@ class _Home1WidgetState extends State<Home1Widget>
                                               ),
                                         ),
                                         TextSpan(
-                                          text: FFAppState().Kvalue,
+                                          text: "${FFAppState().Kvalue} mg/kg",
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1396,7 +1396,7 @@ class _Home1WidgetState extends State<Home1Widget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
                                   child: Text(
-                                    FFAppState().ECvalue,
+                                    "${FFAppState().ECvalue} μs/cm",
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall

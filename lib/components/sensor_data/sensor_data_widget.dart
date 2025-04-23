@@ -91,7 +91,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
 
     return Material(
       color: Colors.transparent,
-      elevation: 5.0,
+      elevation: 10.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
@@ -122,7 +122,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Container(
                   width: 40.0,
-                  height: 6.0,
+                  height: 7.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryText,
                     borderRadius: BorderRadius.circular(12.0),
@@ -218,7 +218,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                                         ),
                                   ),
                                   Text(
-                                    FFAppState().Nvalue,
+                                    "${FFAppState().Nvalue} mg/kg",
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -288,7 +288,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                                         ),
                                   ),
                                   Text(
-                                    FFAppState().Pvalue,
+                                    "${FFAppState().Pvalue} mg/kg",
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -359,7 +359,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                                         ),
                                   ),
                                   Text(
-                                    FFAppState().Kvalue,
+                                    "${FFAppState().Kvalue} mg/kg",
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -410,7 +410,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                                 children: [
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'q29l1hkk' /* Electrical Conductivity */,
+                                      'vp65dh91' /* Electrical Conductivity */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -429,7 +429,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                                         ),
                                   ),
                                   Text(
-                                    FFAppState().ECvalue,
+                                    "${FFAppState().ECvalue} μs/cm",
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -480,7 +480,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                                 children: [
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'uslop6hv' /* Soil Moisture */,
+                                      '0awga1mh' /* Soil Moisture */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -499,7 +499,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                                         ),
                                   ),
                                   Text(
-                                    FFAppState().moisturevalue,
+                                    "${FFAppState().moisturevalue} %",
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -550,7 +550,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                                 children: [
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'kh1qj261' /* Soil ph */,
+                                      '0m7x5zyk' /* Soil ph */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
@@ -571,7 +571,7 @@ class _SensorDataWidgetState extends State<SensorDataWidget> with RouteAware {
                                   Text(
                                     valueOrDefault<String>(
                                       formatNumber(
-                                        random_data.randomInteger(0, 9),
+                                        random_data.randomInteger(4, 7),
                                         formatType: FormatType.decimal,
                                         decimalType: DecimalType.periodDecimal,
                                       ),
