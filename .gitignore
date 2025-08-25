@@ -1,0 +1,9 @@
+Download/
+datasets/
+Colab/
+Vrinda_API/
+downloads/
+
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
